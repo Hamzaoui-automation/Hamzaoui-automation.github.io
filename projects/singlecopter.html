@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous TVC Singlecopter — Mohamed Hamzaoui</title>
+  <meta name="description" content="A single-rotor drone steered by thrust vector control — from aerodynamic first principles to custom PCB, cascaded PID control and a Blender digital twin." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">mohamed<span>.hamzaoui</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+      <h1>Autonomous TVC Singlecopter</h1>
+      <p class="lede">A drone with one rotor and no differential thrust. Every degree of freedom is recovered by redirecting the rotor's wake with four aerodynamic vanes — the same principle that steers rockets, built on a student budget.</p>
+      <div class="meta-row">
+        <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">End-Year Engineering Project · INSAT (team of 4)</div></div>
+        <div class="meta-item"><div class="meta-label">Timeline</div><div class="meta-value">2025 – 2026</div></div>
+        <div class="meta-item"><div class="meta-label">Stack</div><div class="meta-value">Python · ESP32-S3 · KiCad · Blender · MQTT · React + Three.js</div></div>
+        <div class="meta-item"><div class="meta-label">Validation</div><div class="meta-value">18/18 automated tests · SITL at 50 Hz</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="project-content">
+    <div class="container">
+      <div class="prose">
+        <h2>Why it's hard</h2>
+        <p>A quadcopter steers by spinning four rotors at different speeds — an abundance of control authority. A singlecopter has exactly one fixed rotor, so it can climb and descend but not translate or turn. We restored full 6-DoF flight with <strong>thrust vector control</strong>: four flat vanes in the rotor's high-speed downwash deflect part of the wake, reacting steering forces back onto the airframe. Symmetric vane deflection translates the drone; differential deflection recovers yaw against the rotor's reactive torque.</p>
+
+        <h2>From first principles to flight code</h2>
+        <ul>
+          <li><strong>Aerodynamic modeling</strong> — momentum-theory thrust law, ground-effect correction, vane lateral-force model and dual-regime drag, all derived analytically and implemented one-to-one in the simulator and flight controller.</li>
+          <li><strong>Cascaded control architecture</strong> — outer proportional position loops feeding inner PID velocity loops, analytically inverted through the vane model into deflection angles and throttle, with reactive-torque feed-forward for drift-free heading hold.</li>
+          <li><strong>Hardware design</strong> — full propulsion sizing (thrust-to-weight, disc loading, motor KV selection), mechanical vane-actuation kinematics, and a custom PCB designed in KiCad around an ESP32-S3 with a 400 ms wireless fail-safe.</li>
+          <li><strong>Digital twin</strong> — a physics-accurate Blender simulation speaking the same MQTT message contract as the real hardware, so the identical autopilot code flies both. Hundreds of autonomous missions were completed virtually before firmware ever touched the ESP32.</li>
+          <li><strong>Live telemetry dashboard</strong> — a React + Three.js web app mirroring the drone in 3D at 50 Hz with per-term PID profiling charts.</li>
+        </ul>
+
+        <h2>Results</h2>
+        <ul>
+          <li>Autonomous point-to-point flight: a 17.2 m mission with a 3 m climb reaches its arrival radius in ~5.2 s and converges to <strong>&lt; 1 cm final position error</strong> (software-in-the-loop).</li>
+          <li>Altitude hold settles within ±2% and &lt; 2 cm steady-state error.</li>
+          <li>Entire control stack pinned down by an automated pytest suite — <strong>18/18 passing</strong> — covering the PID law, force directions, autonomous climb/descent and the MQTT wire format.</li>
+        </ul>
+      </div>
+
+      <div class="next-project">
+        <div>
+          <div class="np-label">Next project</div>
+          <a class="np-link" href="bionic-arm.html">EMG-Controlled Bionic Arm
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Mohamed Hamzaoui</p>
+      <div class="footer-links">
+        <a href="https://github.com/Hamzaoui-automation" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/mohamed-hamzaoui4002/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

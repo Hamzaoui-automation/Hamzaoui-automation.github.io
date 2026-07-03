@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMG-Controlled Bionic Arm — Mohamed Hamzaoui</title>
+  <meta name="description" content="A low-cost bionic arm driven by muscle signals: hand-built EMG conditioning circuit, TinyML gesture classifier on ESP32, and a live Blender simulation over MQTT." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-logo">mohamed<span>.hamzaoui</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#awards">Awards</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="project-hero">
+    <div class="container">
+      <a href="../index.html#projects" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+      <h1>EMG-Controlled Bionic Arm</h1>
+      <p class="lede">Reading intention straight from the muscle: a prosthetic hand that interprets electromyographic signals through a hand-built analog circuit and a machine-learning classifier running on the edge.</p>
+      <div class="meta-row">
+        <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Personal Professional Project · INSAT (team of 4)</div></div>
+        <div class="meta-item"><div class="meta-label">Timeline</div><div class="meta-value">2024 – 2025</div></div>
+        <div class="meta-item"><div class="meta-label">Stack</div><div class="meta-value">ESP32 · Custom analog EMG circuit · Python · scikit-learn · Blender · MQTT</div></div>
+        <div class="meta-item"><div class="meta-label">Latency</div><div class="meta-value">&lt; 300 ms end-to-end response</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="project-content">
+    <div class="container">
+      <div class="two-col-media reveal">
+        <figure class="media-figure">
+          <img src="../assets/img/bionic-blender.jpg" alt="Blender simulation of the bionic hand switching gestures live from MQTT EMG predictions" loading="lazy" />
+          <figcaption>The Blender digital hand switching gestures live as EMG predictions arrive over MQTT.</figcaption>
+        </figure>
+        <figure class="media-figure">
+          <img src="../assets/img/bionic-team.jpg" alt="The project team holding the 3D-printed tendon-driven prosthetic hand prototype" loading="lazy" />
+          <figcaption>The team with the 3D-printed, tendon-driven hand prototype.</figcaption>
+        </figure>
+      </div>
+
+      <div class="prose">
+        <h2>The goal</h2>
+        <p>Commercial myoelectric prostheses cost thousands and adapt poorly to their user. We set out to build the opposite: a <strong>low-cost, self-learning bionic arm</strong> that reads forearm muscle activity and translates it into natural hand gestures — using accessible hardware and open tools.</p>
+
+        <h2>Three systems, one pipeline</h2>
+        <ul>
+          <li><strong>Hand-built EMG signal conditioning circuit</strong> — a four-stage analog chain designed and assembled from scratch: instrumentation-amplifier differential amplification (up to 1000×), precision rectification, band-pass filtering to isolate the 20–500 Hz EMG band, and envelope smoothing into a clean analog voltage proportional to muscle contraction.</li>
+          <li><strong>Tiny machine-learning classifier on the edge</strong> — EMG windows are modeled with autoregressive (ARMA) coefficients plus time-domain features (MAV, RMS, zero crossings, slope sign changes), then classified by a compact model deployed on an ESP32-class microcontroller. Data augmentation (noise injection, amplitude scaling, time warping) compensated for a small self-recorded dataset.</li>
+          <li><strong>Live Blender simulation over MQTT</strong> — recognized gestures are published to an MQTT broker; a 22-bone rigged hand in Blender subscribes and animates the matching gesture in real time, with confidence-weighted animation blending. This validated the whole pipeline — under 300 ms end-to-end — before driving the physical tendon-actuated hand.</li>
+        </ul>
+
+        <h2>The physical hand</h2>
+        <p>The 3D-printed hand replicates human skeletal structure — proximal, middle and distal phalanges with MCP/PIP/DIP joints — actuated by five servos pulling nylon "tendons", staying under 400 g. The modular design keeps it cheap to customize and repair, which is the point: prosthetics this capable shouldn't be out of reach.</p>
+      </div>
+
+      <div class="next-project">
+        <div>
+          <div class="np-label">Next project</div>
+          <a class="np-link" href="chess-robot.html">Chess-Playing Robotic Arm
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Mohamed Hamzaoui</p>
+      <div class="footer-links">
+        <a href="https://github.com/Hamzaoui-automation" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/mohamed-hamzaoui4002/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
