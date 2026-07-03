@@ -51,7 +51,14 @@
       <div class="prose">
         <h2>Why it's hard</h2>
         <p>A quadcopter steers by spinning four rotors at different speeds — an abundance of control authority. A singlecopter has exactly one fixed rotor, so it can climb and descend but not translate or turn. We restored full 6-DoF flight with <strong>thrust vector control</strong>: four flat vanes in the rotor's high-speed downwash deflect part of the wake, reacting steering forces back onto the airframe. Symmetric vane deflection translates the drone; differential deflection recovers yaw against the rotor's reactive torque.</p>
+      </div>
 
+      <figure class="media-figure reveal">
+        <img src="../assets/img/singlecopter-cad.png" alt="SolidWorks 3D model of the TVC singlecopter airframe, rotor mast and four-vane assembly" loading="lazy" />
+        <figcaption>The airframe modeled in SolidWorks — mast, fixed rotor and the four independently-actuated TVC vanes.</figcaption>
+      </figure>
+
+      <div class="prose">
         <h2>From first principles to flight code</h2>
         <ul>
           <li><strong>Aerodynamic modeling</strong> — momentum-theory thrust law, ground-effect correction, vane lateral-force model and dual-regime drag, all derived analytically and implemented one-to-one in the simulator and flight controller.</li>
@@ -67,6 +74,13 @@
           <li>Altitude hold settles within ±2% and &lt; 2 cm steady-state error.</li>
           <li>Entire control stack pinned down by an automated pytest suite — <strong>18/18 passing</strong> — covering the PID law, force directions, autonomous climb/descent and the MQTT wire format.</li>
         </ul>
+      </div>
+
+      <div class="link-buttons">
+        <a href="https://github.com/fayezzouari/autonomous-drone" target="_blank" rel="noopener" class="btn btn-primary">
+          View the repository
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.42-2.69 5.39-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
       </div>
 
       <div class="next-project">
