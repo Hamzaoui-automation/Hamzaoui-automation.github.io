@@ -51,14 +51,7 @@
       <div class="prose">
         <h2>Why it's hard</h2>
         <p>A quadcopter steers by spinning four rotors at different speeds — an abundance of control authority. A singlecopter has exactly one fixed rotor, so it can climb and descend but not translate or turn. We restored full 6-DoF flight with <strong>thrust vector control</strong>: four flat vanes in the rotor's high-speed downwash deflect part of the wake, reacting steering forces back onto the airframe. Symmetric vane deflection translates the drone; differential deflection recovers yaw against the rotor's reactive torque.</p>
-      </div>
 
-      <figure class="media-figure reveal">
-        <img src="../assets/img/singlecopter-cad.png" alt="SolidWorks 3D model of the TVC singlecopter airframe, rotor mast and four-vane assembly" loading="lazy" />
-        <figcaption>The airframe modeled in SolidWorks — mast, fixed rotor and the four independently-actuated TVC vanes.</figcaption>
-      </figure>
-
-      <div class="prose">
         <h2>From first principles to flight code</h2>
         <ul>
           <li><strong>Aerodynamic modeling</strong> — momentum-theory thrust law, ground-effect correction, vane lateral-force model and dual-regime drag, all derived analytically and implemented one-to-one in the simulator and flight controller.</li>
